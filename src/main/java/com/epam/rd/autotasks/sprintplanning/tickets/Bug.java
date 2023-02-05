@@ -1,22 +1,23 @@
 package com.epam.rd.autotasks.sprintplanning.tickets;
 
 public class Bug extends Ticket {
-    private UserStory relatedUserStory;
-
-    private Bug(int id, String name, int estimate, UserStory relatedUserStory) {
-        super(id, name, estimate);
-        this.relatedUserStory = relatedUserStory;
-    }
+    public UserStory userStory;
 
     public static Bug createBug(int id, String name, int estimate, UserStory userStory) {
-        if (userStory == null || !userStory.isCompleted()) {
-            return null;
+        if(userStory.completed == false || userStory == null) return null;
+        else{
+            Bug bug = new Bug(id,name,estimate,userStory);
+            return bug;
         }
-        return new Bug(id, name, estimate, userStory);
+    }
+
+    private Bug(int id, String name, int estimate, UserStory userStory) {
+        super(id, name, estimate);
+        this.userStory = userStory;
     }
 
     @Override
     public String toString() {
-        return "[Bug " + getId() + "] " + relatedUserStory.getName() + ": " + getName();
+        return "[Bug "+ getId() +"] "+ userStory.getName() + ": " + getName();
     }
 }

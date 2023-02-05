@@ -1,16 +1,15 @@
 package com.epam.rd.autotasks.sprintplanning.tickets;
 
 public class Ticket {
-    private int id;
+    private final int id;
     private String name;
     private int estimate;
-    private boolean completed;
+    protected boolean completed = false;
 
     public Ticket(int id, String name, int estimate) {
         this.id = id;
         this.name = name;
         this.estimate = estimate;
-        this.completed = false;
     }
 
     public int getId() {
@@ -21,15 +20,15 @@ public class Ticket {
         return name;
     }
 
-    public int getEstimate() {
-        return estimate;
-    }
-
     public boolean isCompleted() {
         return completed;
     }
 
     public void complete() {
-        this.completed = true;
+        completed = true;
+    }
+
+    public int getEstimate() {
+        return estimate;
     }
 }
